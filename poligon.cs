@@ -17,10 +17,12 @@ namespace Poligon3_9A2022
         public void unos() {
             for (int i = 0; i < broj_temena; i++)
             {
-                Console.WriteLine("Za teme {0} x=", i);
-                teme[i].x = Convert.ToDouble(Console.Read());
-                Console.WriteLine("Za teme {0} y=", i);
-                teme[i].y = Convert.ToDouble(Console.Read());
+                Console.Write("Za teme {0} x=", i);
+                double temp_x = Convert.ToDouble(Console.ReadLine());
+                Console.Write("Za teme {0} y=", i);
+                double temp_y = Convert.ToDouble(Console.ReadLine());
+                tacka nova = new tacka(temp_x, temp_y);
+                teme[i] = nova;
             }
         }
         public void ucitaj(){
