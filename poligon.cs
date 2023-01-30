@@ -7,7 +7,11 @@ namespace Poligon3_9A2022
 {
     class poligon
     {
-        public poligon(int n){        }
+        int broj_temena;
+        tacka[] teme;
+        public poligon(int n){
+            teme = new tacka[n];
+        }
         public void ucitaj(){        }
         public void snimi() { }
         public bool prost() { return true; }
