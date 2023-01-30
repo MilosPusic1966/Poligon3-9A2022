@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.IO;
 
 namespace Poligon3_9A2022
 {
@@ -9,6 +10,7 @@ namespace Poligon3_9A2022
     {
         static void Main(string[] args)
         {
+            poligon mnogougao=null;
             int izbor=1;
             while (izbor != 0)
             {
@@ -23,8 +25,23 @@ namespace Poligon3_9A2022
                     case 1:
                         Console.WriteLine("Unesite broj temena:");
                         int n = Convert.ToInt32(Console.ReadLine());
-                        poligon novi = new poligon(n);
-                        novi.unos();
+                        mnogougao = new poligon(n);
+                        mnogougao.unos();
+                        break;
+                    case 2:
+                        mnogougao.snimi();
+                        break;
+                    case 3:
+                        StreamReader ulaz = new StreamReader("poligon.txt");
+                        int br = Convert.ToInt32(ulaz.ReadLine());
+                        mnogougao = new poligon(br);
+                        mnogougao.ucitaj();
+                        break;
+                    case 4:
+                        if (mnogougao != null)
+                        {
+                            mnogougao.stampa();
+                        }
                         break;
                 }
             }
