@@ -12,6 +12,7 @@ namespace Poligon3_9A2022
         public poligon(int n){
             teme = new tacka[n];
         }
+        public void unos() { }
         public void ucitaj(){        }
         public void snimi() { }
         public bool prost() { return true; }
