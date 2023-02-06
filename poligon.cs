@@ -14,23 +14,32 @@ namespace Poligon3_9A2022
             teme = new tacka[n];
             broj_temena = n;
         }
-        public void unos() {
-            for (int i = 0; i < broj_temena; i++)
+        public static poligon unos() {
+            Console.WriteLine("Unesite broj temena");
+            int n = Convert.ToInt32(Console.ReadLine());
+            poligon novi = new poligon(n);
+            for (int i = 0; i < n; i++)
             {
                 Console.Write("Za teme {0} x=", i);
                 double temp_x = Convert.ToDouble(Console.ReadLine());
                 Console.Write("Za teme {0} y=", i);
                 double temp_y = Convert.ToDouble(Console.ReadLine());
-                tacka nova = new tacka(temp_x, temp_y);
-                teme[i] = nova;
+                novi.teme[i] = new tacka(temp_x, temp_y);
+                //Console.Write
             }
+            return novi;
         }
-        public void ucitaj(){
-            for (int i = 0; i < broj_temena; i++)
+        public static poligon ucitaj(){
+            StreamReader ulaz = new StreamReader("poligon.txt");
+            int n = Convert.ToInt32(ulaz.ReadLine());
+            poligon novi = new poligon(n);
+            for (int i = 0; i < n; i++)
             {
-                teme[i].x = Convert.ToDouble(Console.ReadLine());
-                teme[i].y = Convert.ToDouble(Console.ReadLine());
+                double temp_x = Convert.ToDouble(ulaz.ReadLine());
+                double temp_y = Convert.ToDouble(ulaz.ReadLine());
+                novi.teme[i] = new tacka(temp_x, temp_y);
             }
+            return novi;
         }
         public void snimi() {
             StreamWriter izlaz = new StreamWriter("poligon.txt");
@@ -40,6 +49,7 @@ namespace Poligon3_9A2022
                 izlaz.WriteLine(teme[i].x);
                 izlaz.WriteLine(teme[i].y);
             }
+            izlaz.Close();
         }
         public bool prost() { return true; }
         public bool konveksan() { return true; }
