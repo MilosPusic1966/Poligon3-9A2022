@@ -39,6 +39,7 @@ namespace Poligon3_9A2022
                 double temp_y = Convert.ToDouble(ulaz.ReadLine());
                 novi.teme[i] = new tacka(temp_x, temp_y);
             }
+            ulaz.Close();
             return novi;
         }
         public void snimi() {
@@ -62,6 +63,11 @@ namespace Poligon3_9A2022
                 Console.WriteLine("Tacka {0}: x={1} y={2} ", i, teme[i].x, teme[i].y);
             }
         }
-
+        public void proba()
+        {
+            vektor ab = new vektor(teme[0], teme[1]);
+            vektor cd = new vektor(teme[2], teme[3]);
+            Console.WriteLine(vektor.seku_se(ab, cd));
+        }
     }
 }
