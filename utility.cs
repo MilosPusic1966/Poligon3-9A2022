@@ -25,9 +25,9 @@ namespace Poligon3_9A2022
             vektor vb = new vektor(tb);
             double cxa = vekt_p(vc, va);
             double cxb = vekt_p(vc, vb);
-            if (cxa * cxb > 0) return 0;
-            else if (cxa * cxb < 0) return 1;
-            else return -1;
+            if (cxa * cxb > 0) return 0; // I
+            else if (cxa * cxb < 0) return 1; // R
+            else return -1; //0
         }
     }
 }

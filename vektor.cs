@@ -29,11 +29,15 @@ namespace Poligon3_9A2022
         }
         public static bool seku_se(vektor a, vektor b)
         {
-            int na_b = util.SIS(a.pocetak, a.kraj, b);
             int na_a = util.SIS(b.pocetak, b.kraj, a);
-            if (na_a * na_b > 0) return true;
+            int na_b = util.SIS(a.pocetak, a.kraj, b);
+            if (na_a * na_b != 0) return true;
             else return false;
-            
+        }
+        public void stampa()
+        {
+            Console.WriteLine("vektor od: x={0}, y={1}", pocetak.x, pocetak.y);
+            Console.WriteLine("vektor do: x={0}, y={1}", kraj.x, kraj.y);
         }
     }
 }

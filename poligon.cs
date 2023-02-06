@@ -66,7 +66,9 @@ namespace Poligon3_9A2022
         public void proba()
         {
             vektor ab = new vektor(teme[0], teme[1]);
+            ab.stampa();
             vektor cd = new vektor(teme[2], teme[3]);
+            cd.stampa();
             Console.WriteLine(vektor.seku_se(ab, cd));
         }
     }
