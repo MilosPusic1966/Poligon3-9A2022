@@ -52,7 +52,25 @@ namespace Poligon3_9A2022
             }
             izlaz.Close();
         }
-        public bool prost() { return true; }
+        public bool prost() 
+        {
+            // ponovljeno teme
+            // presek nesusednih stranica
+            for (int i = 0; i < broj_temena -3; i++)
+            {
+                vektor prvi = new vektor(teme[i], teme[i + 1]);
+                for (int j = i+2; j < broj_temena; j++)
+                {
+                    vektor drugi = new vektor(teme[j], teme[(j + 1) % broj_temena]);
+                    if (vektor.seku_se(prvi, drugi) == true) return false;
+                    {
+
+                    }
+                }
+                
+            }
+            return true; 
+        }
         public bool konveksan() { return true; }
         public double povrsina() { return 0; }
         public void stampa() 
