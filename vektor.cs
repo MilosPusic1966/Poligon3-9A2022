@@ -30,7 +30,9 @@ namespace Poligon3_9A2022
         public static bool seku_se(vektor a, vektor b)
         {
             int na_a = util.SIS(b.pocetak, b.kraj, a);
+            // Console.WriteLine("na a:{0}", na_a);
             int na_b = util.SIS(a.pocetak, a.kraj, b);
+            // Console.WriteLine("na b:{0}", na_b);
             if (na_a * na_b != 0) return true;
             else return false;
         }

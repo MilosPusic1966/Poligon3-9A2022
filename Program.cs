@@ -19,7 +19,10 @@ namespace Poligon3_9A2022
                 Console.WriteLine("2: Sacuvaj u fajl");
                 Console.WriteLine("3: Ucitaj iz fajla");
                 Console.WriteLine("4: Prikazi poligon");
-                Console.WriteLine("5: Proba");
+                Console.WriteLine("5: Prost");
+                Console.WriteLine("6: Konveksan");
+                Console.WriteLine("7: Povrsina");
+                Console.WriteLine("8: Proba");
                 Console.WriteLine("0: Kraj");
                 izbor = Convert.ToInt32(Console.ReadLine());
                 switch (izbor)
@@ -40,7 +43,20 @@ namespace Poligon3_9A2022
                         }
                         break;
                     case 5:
+                        Console.WriteLine("Prost={0}", mnogougao.prost());
+                        break;
+                    case 6:
+                        Console.WriteLine("Konveksan={0}", mnogougao.konveksan());
+                        mnogougao.konveksan();
+                        break;
+                    case 7:
+                        Console.WriteLine("Povrsina={0}", mnogougao.povrsina());
+                        mnogougao.povrsina();
+                        break;
+                    case 8:
                         mnogougao.proba();
+                        break;
+                    case 0:
                         break;
                 }
             }

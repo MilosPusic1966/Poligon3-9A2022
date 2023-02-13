@@ -55,21 +55,35 @@ namespace Poligon3_9A2022
         public bool prost() 
         {
             // ponovljeno teme
+            for (int i = 0; i < broj_temena - 1; i++)
+            {
+                for (int j = i+1; j < broj_temena; j++)
+                {
+                    if (tacka.jednako(teme[i], teme[j])) return false;
+                }
+            }
+            // return true;
             // presek nesusednih stranica
-            for (int i = 0; i < broj_temena -3; i++)
+            for (int i = 0; i < broj_temena-2; i++)
             {
                 vektor prvi = new vektor(teme[i], teme[i + 1]);
                 for (int j = i+2; j < broj_temena; j++)
                 {
+                    if (i == 0 && j == broj_temena-1) continue;
+                    prvi.stampa();
                     vektor drugi = new vektor(teme[j], teme[(j + 1) % broj_temena]);
+                    drugi.stampa();
                     if (vektor.seku_se(prvi, drugi) == true) return false;
                 }
-                
             }
             return true; 
         }
-        public bool konveksan() { return true; }
-        public double povrsina() { return 0; }
+        public bool konveksan() { 
+            return true; 
+        }
+        public double povrsina() {
+            return 0; 
+        }
         public void stampa() 
         {
             Console.WriteLine("Mnogougao ima {0} temena:", broj_temena);
@@ -80,10 +94,11 @@ namespace Poligon3_9A2022
         }
         public void proba()
         {
+            // Console.WriteLine(prost());
             tacka a = new tacka(2, 1);
-            tacka b = new tacka(2, 1);
-            tacka c = new tacka(2, 1);
-            tacka d = new tacka(2, 1);
+            tacka b = new tacka(4, 4);
+            tacka c = new tacka(4, 1);
+            tacka d = new tacka(3, 4);
             vektor prvi = new vektor(a, b);
             prvi.stampa();
             vektor drugi = new vektor(c, d);
