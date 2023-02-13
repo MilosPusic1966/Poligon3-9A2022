@@ -63,9 +63,6 @@ namespace Poligon3_9A2022
                 {
                     vektor drugi = new vektor(teme[j], teme[(j + 1) % broj_temena]);
                     if (vektor.seku_se(prvi, drugi) == true) return false;
-                    {
-
-                    }
                 }
                 
             }
@@ -83,11 +80,15 @@ namespace Poligon3_9A2022
         }
         public void proba()
         {
-            vektor ab = new vektor(teme[0], teme[1]);
-            ab.stampa();
-            vektor cd = new vektor(teme[2], teme[3]);
-            cd.stampa();
-            Console.WriteLine(vektor.seku_se(ab, cd));
+            tacka a = new tacka(2, 1);
+            tacka b = new tacka(2, 1);
+            tacka c = new tacka(2, 1);
+            tacka d = new tacka(2, 1);
+            vektor prvi = new vektor(a, b);
+            prvi.stampa();
+            vektor drugi = new vektor(c, d);
+            drugi.stampa();
+            Console.WriteLine(vektor.seku_se(prvi, drugi));
         }
     }
 }
