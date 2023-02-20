@@ -10,7 +10,7 @@ namespace Poligon3_9A2022
     {
         public int broj_temena;
         public tacka[] teme;
-        public poligon(int n){
+        public poligon(int n) {
             teme = new tacka[n];
             broj_temena = n;
         }
@@ -29,7 +29,7 @@ namespace Poligon3_9A2022
             }
             return novi;
         }
-        public static poligon ucitaj(){
+        public static poligon ucitaj() {
             StreamReader ulaz = new StreamReader("poligon.txt");
             int n = Convert.ToInt32(ulaz.ReadLine());
             poligon novi = new poligon(n);
@@ -52,37 +52,92 @@ namespace Poligon3_9A2022
             }
             izlaz.Close();
         }
-        public bool prost() 
+        public bool prost()
         {
             // ponovljeno teme
             for (int i = 0; i < broj_temena - 1; i++)
             {
-                for (int j = i+1; j < broj_temena; j++)
+                for (int j = i + 1; j < broj_temena; j++)
                 {
                     if (tacka.jednako(teme[i], teme[j])) return false;
                 }
             }
             // return true;
             // presek nesusednih stranica
-            for (int i = 0; i < broj_temena-2; i++)
+            for (int i = 0; i < broj_temena - 2; i++)
             {
                 vektor prvi = new vektor(teme[i], teme[i + 1]);
-                for (int j = i+2; j < broj_temena; j++)
+                for (int j = i + 2; j < broj_temena; j++)
                 {
-                    if (i == 0 && j == broj_temena-1) continue;
-                    prvi.stampa();
+                    if (i == 0 && j == broj_temena - 1) continue;
+                    // prvi.stampa();
                     vektor drugi = new vektor(teme[j], teme[(j + 1) % broj_temena]);
-                    drugi.stampa();
+                    // drugi.stampa();
                     if (vektor.seku_se(prvi, drugi) == true) return false;
                 }
             }
-            return true; 
+            return true;
         }
-        public bool konveksan() { 
-            return true; 
+        public bool konveksan() {
+            if (prost() == false)
+            {
+                Console.WriteLine("Nije prost, ne moze biti konveksan");
+                return false;
+            }
+            int brojac = 0;
+            int treba = broj_temena;
+            for (int i = 0; i < broj_temena; i++)
+            {
+                vektor prvi = new vektor(teme[i], teme[(i + 1) % broj_temena]);
+                vektor drugi = new vektor(teme[(i + 1) % broj_temena], teme[(i + 2) % broj_temena]);
+                double ugao = util.vekt_p(prvi, drugi);
+                if (ugao > 0) brojac++;
+                if (ugao == 0) treba--;
+            }
+            if ((brojac == treba) || (brojac == 0)) return true;
+            else return false;
         }
         public double povrsina() {
-            return 0; 
+            if (prost()== false)
+            {
+                Console.WriteLine("Nije prost, ne znamo povrsinu!");
+                return -1;
+            }
+            double povrs = 0;
+            for (int i = 0; i < broj_temena; i++)
+            {
+                povrs += teme[i].x * teme[(i + 1) % broj_temena].y;
+                povrs -= teme[i].y * teme[(i + 1) % broj_temena].x;
+            }
+            return Math.Abs(povrs/2); 
+        }
+        public bool TuP()
+        {
+            if (prost() == false)
+            {
+                Console.WriteLine("Nije prost");
+                return false;
+            }
+            Console.Write("Za tacku x=");
+            double temp_x = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Za tacku y=");
+            double temp_y = Convert.ToDouble(Console.ReadLine());
+            double max = teme[0].x;
+            for (int i = 1; i < broj_temena; i++)
+            {
+                if (max < teme[i].x) max = teme[i].x;
+            }
+            tacka leva = new tacka(temp_x, temp_y);
+            tacka desna = new tacka(max+1, temp_y);
+            vektor poluprava = new vektor(leva, desna);
+            int presek = 0;
+            for (int i = 0; i < broj_temena; i++)
+            {
+                vektor stranica = new vektor(teme[i], teme[(i + 1) % broj_temena]);
+                if (vektor.seku_se(poluprava, stranica)) presek++;
+            }
+            if ((presek % 2) == 0) return false;
+            return true;
         }
         public void stampa() 
         {

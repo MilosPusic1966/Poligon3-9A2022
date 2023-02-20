@@ -22,7 +22,8 @@ namespace Poligon3_9A2022
                 Console.WriteLine("5: Prost");
                 Console.WriteLine("6: Konveksan");
                 Console.WriteLine("7: Povrsina");
-                Console.WriteLine("8: Proba");
+                Console.WriteLine("8: Tacka u poligonu");
+                Console.WriteLine("9: Proba");
                 Console.WriteLine("0: Kraj");
                 izbor = Convert.ToInt32(Console.ReadLine());
                 switch (izbor)
@@ -54,6 +55,9 @@ namespace Poligon3_9A2022
                         mnogougao.povrsina();
                         break;
                     case 8:
+                        Console.WriteLine("Unutrasnjost={0}", mnogougao.TuP());
+                        break;
+                    case 9:
                         mnogougao.proba();
                         break;
                     case 0:
