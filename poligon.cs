@@ -134,8 +134,15 @@ namespace Poligon3_9A2022
             for (int i = 0; i < broj_temena; i++)
             {
                 vektor stranica = new vektor(teme[i], teme[(i + 1) % broj_temena]);
+                stranica.stampa();
+                if (util.specijalna_sadrzi_tacku(poluprava,  teme[(i + 1) % broj_temena]))
+                {
+                    if (util.SIS(teme[i], teme[(i + 2) % broj_temena], poluprava) == 1) presek++;
+                }
                 if (vektor.seku_se(poluprava, stranica)) presek++;
+                Console.WriteLine("presek={0}", presek);
             }
+            
             if ((presek % 2) == 0) return false;
             return true;
         }

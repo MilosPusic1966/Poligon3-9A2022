@@ -19,6 +19,19 @@ namespace Poligon3_9A2022
             vektor cd = new vektor(c, d);
             return SIS(a, b, cd);
         }
+        public static bool izmedju(tacka A, tacka B, tacka T)
+        {
+            double AB = Math.Abs(A.x - B.x);
+            double AT = Math.Abs(A.x - T.x);
+            double BT = Math.Abs(T.x - B.x);
+            if (AT + BT == AB) return true;
+            return false;
+        }
+        public static bool specijalna_sadrzi_tacku(vektor AB, tacka T)
+        {
+            if ((T.y == AB.pocetak.y) && (izmedju(AB.pocetak, AB.kraj, T))) return true;
+            return false;
+        }
         public static int SIS(tacka ta, tacka tb, vektor vc) 
         {
             vektor va = new vektor(vc.pocetak, ta);
