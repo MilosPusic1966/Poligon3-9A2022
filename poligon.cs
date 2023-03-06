@@ -154,10 +154,78 @@ namespace Poligon3_9A2022
                 Console.WriteLine("Tacka {0}: x={1} y={2} ", i, teme[i].x, teme[i].y);
             }
         }
+        public poligon hull()
+        {
+            double min_x, min_y;
+            min_x = teme[0].x;
+            min_y = teme[0].y;
+            int indeks = 0;
+            for (int i = 1; i < broj_temena; i++)
+            {
+                if (teme[i].x < min_x)
+                {
+                    min_x = teme[i].x;
+                    min_y = teme[i].y;
+                    indeks = i;
+                }
+                else
+                {
+                    if (min_x == teme[i].x)
+                    {
+                        if (teme[i].y < min_y)
+                        {
+                            min_y = teme[i].y;
+                            indeks = i;
+                        }
+                    }
+                }
+            }
+            Console.WriteLine("pobedio={0}", indeks);
+            List<tacka> hull = new List<tacka>();
+            hull.Add(teme[indeks]);
+            tacka X = new tacka(teme[indeks].x + 2, teme[indeks].y);
+            //vektor PX = new vektor(teme[indeks], X);
+            double min_ugao = 180;
+            int indeks2 = 0;
+            for (int i = 1; i < broj_temena; i++)
+            {
+                double temp_x = teme[(indeks + i) % broj_temena].x - teme[indeks].x;
+                double temp_y = teme[(indeks + i) % broj_temena].y - teme[indeks].y;
+                double temp_ugao = Math.Atan2(temp_y, temp_x);
+                if (temp_ugao < min_ugao)
+                {
+                    min_ugao = temp_ugao;
+                    indeks2 = (indeks + i) % broj_temena;
+                }
+            }
+            hull.Add(teme[indeks2]);
+            while (indeks2 != indeks)
+            {
+                min_ugao = 180;
+                int indeks3 = 0;
+                for (int brojac = indeks2+1; brojac % broj_temena <= indeks; brojac++)
+                {
+                    tacka poc = teme[indeks2];
+                    tacka kraj = teme[brojac % broj_temena];
+                    double temp_x = kraj.x - poc.x;
+                    double temp_y = kraj.y - poc.y;
+                    double temp_ugao = Math.Atan2(temp_y, temp_x);
+                    if (temp_ugao < min_ugao)
+                    {
+                        min_ugao = temp_ugao;
+                        indeks3 = brojac;
+                    }
+                }
+                hull.Add(teme[indeks3]);
+                indeks2 = indeks3;
+            }
+            // KOMENTARI I SUGESTIJE SU DOMACI!!!
+            return null;
+        }
         public void proba()
         {
             // Console.WriteLine(prost());
-            tacka a = new tacka(2, 1);
+            /*tacka a = new tacka(2, 1);
             tacka b = new tacka(4, 4);
             tacka c = new tacka(4, 1);
             tacka d = new tacka(3, 4);
@@ -165,7 +233,9 @@ namespace Poligon3_9A2022
             prvi.stampa();
             vektor drugi = new vektor(c, d);
             drugi.stampa();
-            Console.WriteLine(vektor.seku_se(prvi, drugi));
+            */
+            double ugao = Math.Atan2(1, -1)*180/Math.PI;
+            Console.WriteLine("Ugao={0}", ugao);
         }
     }
 }
