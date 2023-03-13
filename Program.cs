@@ -25,6 +25,7 @@ namespace Poligon3_9A2022
                 Console.WriteLine("8: Tacka u poligonu");
                 Console.WriteLine("9: Proba");
                 Console.WriteLine("10: Hull");
+                Console.WriteLine("11: Hull V2");
                 Console.WriteLine("0: Kraj");
                 izbor = Convert.ToInt32(Console.ReadLine());
                 switch (izbor)
@@ -63,6 +64,9 @@ namespace Poligon3_9A2022
                         break;
                     case 10:
                         mnogougao = mnogougao.hull();
+                        break;
+                    case 11:
+                        mnogougao.convexHull();
                         break;
                     case 0:
                         break;

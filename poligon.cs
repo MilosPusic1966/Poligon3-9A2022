@@ -236,6 +236,48 @@ namespace Poligon3_9A2022
             // KOMENTARI I SUGESTIJE SU DOMACI!!!
             return novi;
         }
+        // Ver 2:
+        public static int orientation(tacka p, tacka q, tacka r)
+        {
+            double val = (q.y - p.y) * (r.x - q.x) -
+                    (q.x - p.x) * (r.y - q.y);
+
+            if (val == 0) return 0; // collinear
+            return (val > 0) ? 1 : 2; // clock or counterclock wise
+        }
+        public void convexHull()
+        {
+            tacka[] points;
+            points = new tacka[broj_temena];
+            int n = broj_temena;
+            for (int i = 0; i < broj_temena; i++)
+            {
+                points[i] = teme[i];
+            }
+            if (n < 3) return;
+            List<tacka> hull = new List<tacka>();
+            int l = 0;
+            for (int i = 1; i < n; i++)
+                if (points[i].x < points[l].x)
+                    l = i;
+            int p = l, q;
+            do
+            {
+                hull.Add(points[p]);
+                q = (p + 1) % n;
+                for (int i = 0; i < n; i++)
+                {
+                    if (orientation(points[p], points[i], points[q])== 2)
+                        q = i;
+                }
+                p = q;
+            } while (p != l); // While we don't come to first 
+                              // point
+            foreach (tacka temp in hull)
+                Console.WriteLine("(" + temp.x + ", " +
+                                    temp.y + ")");
+        }
+        // Kraj Ver2
         public void proba()
         {
             // Console.WriteLine(prost());
