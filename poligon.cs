@@ -199,28 +199,42 @@ namespace Poligon3_9A2022
                 }
             }
             hull.Add(teme[indeks2]);
+            // Console.WriteLine("Drugi={0}", indeks2);
             while (indeks2 != indeks)
             {
                 min_ugao = 180;
                 int indeks3 = 0;
-                for (int brojac = indeks2+1; brojac % broj_temena <= indeks; brojac++)
+                for (int brojac = indeks2+1; brojac % broj_temena != indeks+1; brojac++)
                 {
+                    //Console.WriteLine("radim={0}", brojac);
                     tacka poc = teme[indeks2];
                     tacka kraj = teme[brojac % broj_temena];
                     double temp_x = kraj.x - poc.x;
                     double temp_y = kraj.y - poc.y;
+                    // Console.WriteLine("tacka={0} {1}", temp_x, temp_y);
                     double temp_ugao = Math.Atan2(temp_y, temp_x);
+                    if (temp_ugao < 0)temp_ugao+=2*Math.PI;
+                    // Console.WriteLine("Ugao={0}", temp_ugao);
                     if (temp_ugao < min_ugao)
                     {
                         min_ugao = temp_ugao;
                         indeks3 = brojac;
                     }
                 }
-                hull.Add(teme[indeks3]);
-                indeks2 = indeks3;
+                hull.Add(teme[indeks3 % broj_temena] );
+                // Console.WriteLine("Dodao={0}", indeks3);
+                
+                indeks2 = indeks3 % broj_temena;
+            }
+            int novi_duzina = hull.Count - 1;
+            poligon novi = new poligon(novi_duzina);
+            for (int i = 0; i < novi_duzina; i++)
+            {
+                // novi.teme[i] = new tacka(hull[i].x, hull[i].y);
+                novi.teme[i] = hull[i];
             }
             // KOMENTARI I SUGESTIJE SU DOMACI!!!
-            return null;
+            return novi;
         }
         public void proba()
         {

@@ -62,7 +62,7 @@ namespace Poligon3_9A2022
                         mnogougao.proba();
                         break;
                     case 10:
-                        mnogougao.hull();
+                        mnogougao = mnogougao.hull();
                         break;
                     case 0:
                         break;
